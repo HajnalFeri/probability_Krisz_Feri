@@ -12,15 +12,15 @@ public class Simulation {
     private int[][] playedLotteryNumbers;
 
     public void generateData(int[] winNumbers) {
-        int[][] tempArray = playedLotteryNumbers;
-        playedLotteryNumbers = new int[tempArray.length + 1][];
+        int[][] tempArray = load("winNumList.csv");
+        playedLotteryNumbers = new int[tempArray.length + 1][6];
         for (int i = 0; i < tempArray.length; i++) {
             playedLotteryNumbers[i] = tempArray[i];
         }
         playedLotteryNumbers[playedLotteryNumbers.length - 1] = winNumbers;
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("winNumList.csv", false));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("winNumList.csv"));
             for (int[] playedLotteryNumber : playedLotteryNumbers) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < playedLotteryNumber.length; i++) {
