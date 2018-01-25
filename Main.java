@@ -12,23 +12,26 @@ public class Main {
         Simulation s = new Simulation();
         int[] lottoNumber = new int[6];
         int randomNum;
-        int index = 0;
-        for (int i = 0; i < 6; i++) {
-            randomNum = (int) (Math.random() * 45 + 1); 
-            for (int x = 0; x < i; x++) {
-                if (lottoNumber[x] == randomNum) {
-                    randomNum = (int) (Math.random() * 45 + 1);
-                    x = -1; 
+        for (int l = 0; l < round; l++) {
+            int index = 0;
+
+            for (int i = 0; i < 6; i++) {
+                randomNum = (int) (Math.random() * 45 + 1); 
+                for (int x = 0; x < i; x++) {
+                    if (lottoNumber[x] == randomNum) {
+                        randomNum = (int) (Math.random() * 45 + 1);
+                        x = -1; 
+                    }
+                    
                 }
+                lottoNumber[index] = randomNum;
+                index++;
             }
-            lottoNumber[index] = randomNum;
-            index++;
-        }
-        if (round == 0) {
-            s.load("winNumList.csv");
-        } else {
-            for (int i = 0; i < round; i++) {
+            if (round == 0) {
+                s.load("winNumList.csv");
+            } else {
                 s.generateData(lottoNumber);
+                
             }
         }
         return s;
@@ -72,8 +75,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Logger logger = new Logger();
+        int n = checkInput(args[0], logger);
         int round = Integer.parseInt(args[0]);
         Simulation simulation = generateSimulation(round);
+        Simulator simulator = new Simulator(simulation, logger);
+        simulator.run();
+        logger.log("HALI:","");
             
     }
 }

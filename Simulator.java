@@ -18,6 +18,7 @@ public class Simulator {
         int freq42 = nf.calcFreq(42);
         Statistics stats = new Statistics(freq42);
         Result result = new Result(bestNums, stats);
+        logger.log("HALI:","");
         return result;
         
     }
