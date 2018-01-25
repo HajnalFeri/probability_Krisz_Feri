@@ -73,8 +73,8 @@ public class Main {
         Simulator simulator = new Simulator(simulation, logger);
         Result r = simulator.run();
         int[] bestArrayAsString = r.getBestNums();
-        logger.log("","After your rounds the 6 most frequent numbers were:\n");
+        logger.log("\n","After your rounds the 6 most frequent numbers were:\n");
         logger.log("", Arrays.toString(bestArrayAsString));
-        logger.log("", "You should bet them if you want to loose some money on the lottery!\n");   
+        logger.log("\n", "You should bet them if you want to loose some money on the lottery!\n"); 
     }
 }
