@@ -1,1 +1,0 @@
-# probability_Krisz_Feri

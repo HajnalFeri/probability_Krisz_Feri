@@ -46,7 +46,7 @@ class NumbersFrequency {
     }
 
     public int calcFreq(int num) {
-        return 10;
+        return lottoNumbFreq[num - 1];
     }
     
 }

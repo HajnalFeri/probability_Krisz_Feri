@@ -9,14 +9,13 @@ public class Main {
     Logger logger;
 
     public static Simulation generateSimulation(int round) {
-        Simulation s = new Simulation();
-        int[] lottoNumber = new int[6];
-        int randomNum;
+        Simulation s = new Simulation(round);
         for (int l = 0; l < round; l++) {
+            int[] lottoNumber = new int[6];
             int index = 0;
-
+            
             for (int i = 0; i < 6; i++) {
-                randomNum = (int) (Math.random() * 45 + 1); 
+                int randomNum = (int) (Math.random() * 45 + 1); 
                 for (int x = 0; x < i; x++) {
                     if (lottoNumber[x] == randomNum) {
                         randomNum = (int) (Math.random() * 45 + 1);
@@ -27,12 +26,7 @@ public class Main {
                 lottoNumber[index] = randomNum;
                 index++;
             }
-            if (round == 0) {
-                s.load("winNumList.csv");
-            } else {
-                s.generateData(lottoNumber);
-                
-            }
+            s.generateData(lottoNumber);
         }
         return s;
     }
@@ -70,9 +64,6 @@ public class Main {
         return n;
     }
 
-
-
-
     public static void main(String[] args) {
 
         Logger logger = new Logger();
@@ -80,8 +71,10 @@ public class Main {
         int round = Integer.parseInt(args[0]);
         Simulation simulation = generateSimulation(round);
         Simulator simulator = new Simulator(simulation, logger);
-        simulator.run();
-        logger.log("HALI:","");
-            
+        Result r = simulator.run();
+        int[] bestArrayAsString = r.getBestNums();
+        logger.log("","After your rounds the 6 most frequent numbers were:\n");
+        logger.log("", Arrays.toString(bestArrayAsString));
+        logger.log("", "You should bet them if you want to loose some money on the lottery!\n");   
     }
 }

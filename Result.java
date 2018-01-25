@@ -1,6 +1,14 @@
 public class Result {
-    //getter, setter
-    public Result(int[] a, Statistics b) {
-
+    
+    int[] bestNums;
+    Statistics statistics;
+    
+    public Result(int[] bestNums, Statistics statistics) {
+        this.bestNums = bestNums;
+        this.statistics = statistics;
     }
-}
+
+    public int[] getBestNums() {
+        return bestNums;
+    }
+ }

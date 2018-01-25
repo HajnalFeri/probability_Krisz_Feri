@@ -5,21 +5,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.Arrays;
 
 public class Simulation {
 
     private int[][] playedLotteryNumbers;
 
     public void generateData(int[] winNumbers) {
-        int[][] tempArray = load("winNumList.csv");
-        playedLotteryNumbers = new int[tempArray.length + 1][6];
+        int[][] tempArray = playedLotteryNumbers;
+        playedLotteryNumbers = new int[tempArray.length + 1][];
         for (int i = 0; i < tempArray.length; i++) {
             playedLotteryNumbers[i] = tempArray[i];
         }
         playedLotteryNumbers[playedLotteryNumbers.length - 1] = winNumbers;
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("winNumList.csv"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("winNumList.csv", false));
             for (int[] playedLotteryNumber : playedLotteryNumbers) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < playedLotteryNumber.length; i++) {
@@ -89,12 +90,12 @@ public class Simulation {
         return res;
     }
 
-    public Simulation() {
-        this.playedLotteryNumbers = new int[0][];
-    }
-
-    public Simulation(int[][] playedLotteryNumbers) {
-        this.playedLotteryNumbers = playedLotteryNumbers;
+    public Simulation(int round) {
+        if (round == 0) {
+            this.playedLotteryNumbers = load("winNumList.csv");
+        } else {
+            this.playedLotteryNumbers = new int[0][];
+        }
     }
 
     public int[][] getLottoNumbers() {
