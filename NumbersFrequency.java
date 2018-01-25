@@ -44,5 +44,9 @@ class NumbersFrequency {
             biggerNum = 0;
         }
     }
-}
 
+    public int calcFreq(int num) {
+        return 10;
+    }
+    
+}

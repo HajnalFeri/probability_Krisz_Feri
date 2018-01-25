@@ -1,9 +1,12 @@
+import java.util.Arrays;
+
 public class Simulator {
 
-    private Simulation simulation;
-    private Logger logger;
+    Simulation simulation;
+    Logger logger;
 
-    Simulator(Simulation simulation, Logger logger) {
+    public Simulator(Simulation simulation, Logger logger) {
+
         this.simulation = simulation;
         this.logger = logger;
     }
@@ -16,5 +19,6 @@ public class Simulator {
         Statistics stats = new Statistics(freq42);
         Result result = new Result(bestNums, stats);
         return result;
+        
     }
 }
